@@ -25,8 +25,8 @@ Please follow the steps below to set up the environment before running the proje
 1. To set up the environment directly using Conda:  <br>
     Run the following commands in sequence:
     ```
-    conda create -n env-ViViT python=3.10 -y
-    conda activate env-ViViT
+    conda create -n animal-VAD python=3.10 -y
+    conda activate animal-VAD
     pip install --upgrade pip
     pip install -r requirements.txt
     conda install tensorboard
