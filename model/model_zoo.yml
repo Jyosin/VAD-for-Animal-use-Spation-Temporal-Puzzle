@@ -1,0 +1,171 @@
+#################################
+#         SwinTransformer       #
+#################################
+# Architecture  ：SwinTransformer3D(固定)
+
+Swin-T:
+  Architecture: SwinTransformer3D
+  patch_size: (4,4,4)
+  embed_dim: 96
+  depths: [2, 2, 6, 2]
+  num_heads: [3, 6, 12, 24]
+  window_size: (8,7,7)
+  mlp_ratio: 4.
+  qkv_bias: True
+  qk_scale: None
+  drop_rate: 0.
+  attn_drop_rate: 0.
+  drop_path_rate: 0.2
+  patch_norm: True
+
+  cls_head:
+    in_channels: 768
+  pretrain_cls_head:
+    in_channels : 768
+
+Swin-S:
+  Architecture: SwinTransformer3D
+  patch_size: (4,4,4)
+  embed_dim: 96
+  depths: [2, 2, 18, 2]
+  num_heads: [3, 6, 12, 24]
+  window_size: (8,7,7)
+  mlp_ratio: 4.
+  qkv_bias: True
+  qk_scale: None
+  drop_rate: 0.
+  attn_drop_rate: 0.
+  drop_path_rate: 0.2
+  patch_norm: True
+
+  cls_head:
+    in_channels: 768
+  pretrain_cls_head:
+    in_channels : 768
+
+Swin-B:
+  Architecture: SwinTransformer3D
+  patch_size: (4,4,4)
+  embed_dim: 128
+  depths: [2, 2, 18, 2]
+  num_heads: [4,8,16,32]
+  window_size: (8,7,7)
+  mlp_ratio: 4.
+  qkv_bias: True
+  qk_scale: None
+  drop_rate: 0.
+  attn_drop_rate: 0.
+  drop_path_rate: 0.2
+  patch_norm: True
+
+  cls_head:
+    in_channels: 1024
+  pretrain_cls_head:
+    in_channels : 1024
+  
+Swin-L:
+  Architecture: SwinTransformer3D
+  patch_size: (4,4,4)
+  embed_dim: 192
+  depths: [2, 2, 18, 2]
+  num_heads: [6,12,24,48]
+  window_size: (8,7,7)
+  mlp_ratio: 4.
+  qkv_bias: True
+  qk_scale: None
+  drop_rate: 0.
+  attn_drop_rate: 0.
+  drop_path_rate: 0.2
+  patch_norm: True
+
+  cls_head:
+    in_channels: 1536
+  pretrain_cls_head:
+    in_channels : 1536
+
+#################################
+#          TimeSFormer          #
+#################################
+# Architecture  ：TimeSFormer(固定)
+
+TimeSFormer:
+  Architecture  : TimeSFormer
+  patch_size    : 16
+  attention_type: divided_space_time
+  embed_dim     : 768
+  depth         : 12
+  num_heads     : 12
+  mlp_ratio     : 4
+  qkv_bias      : True
+  drop_rate     : 0.
+  attn_drop_rate: 0.
+  drop_path_rate: 0.1
+  cls_head:
+    in_channels : 768
+  pretrain_cls_head:
+    in_channels : 768
+
+#################################
+#              C3D              #
+#################################
+# Architecture  ：C3D(固定)
+
+C3D:
+  Architecture: C3D
+  cls_head:
+    in_channels: 32768
+  pretrain_cls_head:
+    in_channels: 9216
+
+#################################
+#           3D-Resnet           #
+#################################
+# Architecture  ：3D-Resnet(固定)
+
+R3D-18:
+  Architecture: 3D-Resnet
+  layers  : [2,2,2,2]
+  cls_head:
+    in_channels: 512
+  pretrain_cls_head:
+    in_channels: 512
+
+R3D-34:
+  Architecture: 3D-Resnet
+  layers  : [3,4,6,3]
+  cls_head:
+    in_channels: 512
+  pretrain_cls_head:
+    in_channels: 512
+
+R3D-50:
+  Architecture: 3D-Resnet
+  layers  : [3,4,6,3]
+  cls_head:
+    in_channels: 512
+  pretrain_cls_head:
+    in_channels: 512
+
+R3D-101:
+  Architecture: 3D-Resnet
+  layers  : [3,4,23,3]
+  cls_head:
+    in_channels: 512
+  pretrain_cls_head:
+    in_channels: 512
+
+R3D-152:
+  Architecture: 3D-Resnet
+  layers  : [3,4,36,3]
+  cls_head:
+    in_channels: 512
+  pretrain_cls_head:
+    in_channels: 512
+
+R3D-200:
+  Architecture: 3D-Resnet
+  layers  : [3,24,36,3]
+  cls_head:
+    in_channels: 512
+  pretrain_cls_head:
+    in_channels: 512
