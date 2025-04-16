@@ -3,7 +3,7 @@
 
 ### 🐾Overview  
 This project focuses on the task of **anomaly detection in animal behavior videos** using the [Animal Kingdom dataset](https://sutdcv.github.io/Animal-Kingdom/).  <br>
-For self-supervised pretraining, we adopt [Space-Time Cubic Puzzles](https://arxiv.org/pdf/1811.09795) and 3D [Jigsaw Masking](https://arxiv.org/pdf/2207.11971).  <br>
+For self-supervised pretraining, we adopt [Space-Time Jigsaw Puzzles](https://arxiv.org/pdf/1811.09795) and use it in [VAD](https://link.springer.com/chapter/10.1007/978-3-031-20080-9_29).  <br>
 The following models are supported:  
 - [TimeSFormer](https://arxiv.org/pdf/2102.05095)  
 - [SwinTransformer](https://arxiv.org/abs/2106.13230)  
@@ -12,7 +12,7 @@ The following models are supported:
 - 
 ### 🐾概要
 動物行動動画[Animal Kingdomデータセット](https://sutdcv.github.io/Animal-Kingdom/)を対象とした異常行動検出タスクです。<br>
-事前学習として[Space-Time Cubic Puzzles](https://arxiv.org/pdf/1811.09795)および3Dの[Jigsaw Masking](https://arxiv.org/pdf/2207.11971)を学習させる。<br>
+事前学習として[Space-Time Cubic Puzzles](https://arxiv.org/pdf/1811.09795)お使い、[VAD](https://link.springer.com/chapter/10.1007/978-3-031-20080-9_29)を学習させる。<br>
 対応しているモデルは下記の通り。
 - [TimeSFormer](https://arxiv.org/pdf/2102.05095)
 - [SwinTransformer](https://arxiv.org/abs/2106.13230)
