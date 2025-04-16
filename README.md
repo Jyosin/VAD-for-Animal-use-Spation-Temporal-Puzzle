@@ -19,7 +19,7 @@ The following models are supported:
 - [C3D](https://arxiv.org/pdf/1412.0767)
 - [R3D](https://arxiv.org/pdf/1711.11248v3)
 
-###🚀Setup  
+### 🚀Setup  
 Please follow the steps below to set up the environment before running the project.
 
 1. To set up the environment directly using Conda:  <br>
