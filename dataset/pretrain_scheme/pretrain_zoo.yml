@@ -1,0 +1,45 @@
+
+#################################
+#         CubicPuzzle3D         #
+#################################
+# type            ：CubicPuzzle3D(固定)
+# n_grid          ：(h,w,t)方向に関し、分割するグリッド数
+# jitter_size     ：(h,w,t)方向のジッターサイズ
+# grayscale_prob  ：グレースケールにする確率
+#
+# 詳細は下記参照
+# https://arxiv.org/pdf/1811.09795
+#
+
+CubicPuzzle3D:
+  type          : CubicPuzzle3D
+  n_grid        : (2,2,4)
+  jitter_size   : (80,80,32)
+  grayscale_prob: 0.5
+
+#################################
+#    JigsawPuzzle3D (Separate)  #
+#################################
+# type            ：SeparateJigsawPuzzle3D(固定)
+# n_grid          ：(h,w,t)方向に関し、分割するグリッド数
+# mask_grid_ratio ：(h,w)方向とt方向のグリッドのうち、マスクするグリッドの割合
+#                   例) n_grid=(2,2,4) かつ mask_grid_ratio=(0.5,0.25)の時
+#                       h,wのグリッド数=4 -> マスクされるグリッド数は4*0.50=2
+#                       tのグリッド数=4   -> マスクされるグリッド数は4*0.25=1
+
+SeparateJigsawPuzzle3D:
+  type          : SeparateJigsawPuzzle3D
+  n_grid        : (2,2,4)
+  mask_grid_ratio: (0.25,0.25)
+
+#################################
+#    JigsawPuzzle3D (Joint)     #
+#################################
+# type            ：JointJigsawPuzzle3D(固定)
+# n_grid          ：(h,w,t)方向に関し、分割するグリッド数
+# mask_grid_ratio ：分割したグリッドのうち、マスクするグリッドの割合
+
+JointJigsawPuzzle3D:
+  type          : JointJigsawPuzzle3D
+  n_grid        : (2,2,4)
+  mask_grid_ratio: 0.125
