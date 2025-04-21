@@ -1,0 +1,47 @@
+pretrain:
+  # is_valid    ：事前学習を行うかどうか(train.type=Jointの時はFalseにすること)
+  # epoch       ：エポック数
+  # batch_size  ：バッチ数
+  # num_workers ：データ読み込み時に使うワーカーの数
+  # optimizer   ：Optimizer。[sgd,adam,adamw]から選択すること。
+  # lr          ：学習率
+  # weight_decay：重み正則化
+  is_valid    : True
+  epoch       : 1
+  batch_size  : 2
+  num_workers : 4
+  optimizer   : adamw
+  lr          : 0.0005
+  weight_decay: 0.05
+
+train:
+  # epoch       ：エポック数
+  # batch_size  ：バッチ数
+  # num_workers ：データ読み込み時に使うワーカーの数
+  # optimizer   ：Optimizer。[sgd,adam,adamw]から選択すること。
+  # lr          ：学習率
+  # weight_decay：重み正則化
+  epoch       : 1
+  batch_size  : 1
+  num_workers : 0
+  optimizer   : adamw
+  lr          : 0.0005
+  weight_decay: 0.05
+
+dataset:
+  # type：使用するデータセットのタイプ。dataset/dataset_zoo.ymlで定義されているデータセットから選択。
+  type: UCF101
+
+model:
+  # type：使用するモデルのタイプ。model/model_zoo.ymlで定義されているモデルから選択。
+  type: TimeSFormer
+
+others:
+  # label       ：実験のラベル。labelで指定した名称のフォルダが、学習結果フォルダに格納されます。
+  # rnd_seed    ：ランダムシード
+  # running_path：学習進行中のログ格納先パス（Tensorboard用）
+  # result_path ：学習結果(モデルのチェックポイント・学習曲線等)の格納先パス
+  label         : TEST
+  rnd_seed      : 1
+  running_path  : ./logs
+  result_path   : ./results
