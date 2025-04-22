@@ -1,47 +1,101 @@
 pretrain:
-  # is_valid    ：事前学習を行うかどうか(train.type=Jointの時はFalseにすること)
-  # epoch       ：エポック数
-  # batch_size  ：バッチ数
-  # num_workers ：データ読み込み時に使うワーカーの数
-  # optimizer   ：Optimizer。[sgd,adam,adamw]から選択すること。
-  # lr          ：学習率
-  # weight_decay：重み正則化
-  is_valid    : True
+  # 是否进行预训练（如果 train.type=Joint，请设为 False）
+  # 事前学習を行うかどうか(train.type=Jointの時はFalseにすること)
+  # Whether to perform pretraining (set to False if train.type=Joint)
+  is_valid    : False
+
+  # 训练轮数（Epoch）
+  # エポック数
+  # Number of epochs
   epoch       : 1
+
+  # 批处理大小（Batch Size）
+  # バッチ数
+  # Batch size
   batch_size  : 2
+
+  # 数据加载时使用的线程数
+  # データ読み込み時に使うワーカーの数
+  # Number of workers for data loading
   num_workers : 4
+
+  # 优化器类型（可选项：sgd, adam, adamw）
+  # Optimizer。[sgd,adam,adamw]から選択すること。
+  # Optimizer type [choose from: sgd, adam, adamw]
   optimizer   : adamw
+
+  # 学习率
+  # 学習率
+  # Learning rate
   lr          : 0.0005
+
+  # 权重衰减（用于正则化）
+  # 重み正則化
+  # Weight decay (for regularization)
   weight_decay: 0.05
 
 train:
-  # epoch       ：エポック数
-  # batch_size  ：バッチ数
-  # num_workers ：データ読み込み時に使うワーカーの数
-  # optimizer   ：Optimizer。[sgd,adam,adamw]から選択すること。
-  # lr          ：学習率
-  # weight_decay：重み正則化
+  # 训练轮数（Epoch）
+  # エポック数
+  # Number of epochs
   epoch       : 1
+
+  # 批处理大小（Batch Size）
+  # バッチ数
+  # Batch size
   batch_size  : 1
+
+  # 数据加载线程数
+  # データ読み込み時に使うワーカーの数
+  # Number of workers for data loading
   num_workers : 0
+
+  # 优化器类型
+  # Optimizer。[sgd,adam,adamw]から選択すること。
+  # Optimizer type [choose from: sgd, adam, adamw]
   optimizer   : adamw
+
+  # 学习率
+  # 学習率
+  # Learning rate
   lr          : 0.0005
+
+  # 权重衰减
+  # 重み正則化
+  # Weight decay
   weight_decay: 0.05
 
 dataset:
-  # type：使用するデータセットのタイプ。dataset/dataset_zoo.ymlで定義されているデータセットから選択。
-  type: UCF101
+  # 数据集类型（请从 dataset/dataset_zoo.yml 中定义的类型中选择）
+  # 使用するデータセットのタイプ。dataset/dataset_zoo.ymlで定義されているデータセットから選択。
+  # Dataset type (choose from those defined in dataset/dataset_zoo.yml)
+  type: animal kigndom
 
 model:
-  # type：使用するモデルのタイプ。model/model_zoo.ymlで定義されているモデルから選択。
+  # 模型类型（请从 model/model_zoo.yml 中定义的类型中选择）
+  # 使用するモデルのタイプ。model/model_zoo.ymlで定義されているモデルから選択。
+  # Model type (choose from those defined in model/model_zoo.yml)
   type: TimeSFormer
 
 others:
-  # label       ：実験のラベル。labelで指定した名称のフォルダが、学習結果フォルダに格納されます。
-  # rnd_seed    ：ランダムシード
-  # running_path：学習進行中のログ格納先パス（Tensorboard用）
-  # result_path ：学習結果(モデルのチェックポイント・学習曲線等)の格納先パス
+  # 实验标签（训练结果将存入以此命名的文件夹中）
+  # 実験のラベル。labelで指定した名称のフォルダが、学習結果フォルダに格納されます。
+  # Experiment label (results will be saved in a folder with this name)
   label         : TEST
+
+  # 随机种子
+  # ランダムシード
+  # Random seed
   rnd_seed      : 1
+
+  # 训练日志输出路径（用于 TensorBoard）
+  # 学習進行中のログ格納先パス（Tensorboard用）
+  # Path for logs during training (for TensorBoard)
   running_path  : ./logs
+
+  # 训练结果保存路径（模型检查点、曲线等）
+  # 学習結果(モデルのチェックポイント・学習曲線等)の格納先パス
+  # Path to save training results (model checkpoints, learning curves, etc.)
   result_path   : ./results
+
+

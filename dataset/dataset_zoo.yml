@@ -1,13 +1,73 @@
 #################################
+#         Animal Kingdom        #
+#################################
+# datatype          ：KineticsK400(固定)
+# num_classess      ：クラス数/Number of classes
+# n_sample_per_class：学習時、各クラスごとに使う学習データの割合/每个类别使用的训练样本数量或比例/Number or ratio of training samples per class
+#                     設定例/Example settings
+#                       n_sample_per_class=100 (各クラスごとに100個のデータを使う/100 samples per class)
+#                       n_sample_per_class=0.2 (各クラスごとに20%のデータを使う/20% of the data per class)
+#                       n_sample_per_class=1.0 (各クラスごとに全データを使う/Use all data per class)
+#
+# img_size      ：各フレームの切り抜きサイズ
+# n_frames      ：モデルに入力する動画のフレーム数
+# frame_interval：フレーム間の間隔
+#               　設定例 -> n_frames = 8 , frame_interval = 4 (4フレームの間隔をあけて8フレーム分取得する)
+#                           1 2 3 4 5 6 7 8 9 10 11 12 13 14 ...
+#                           ↑       ↑       ↑          ↑
+#
+# train_path    ：訓練データセットのパス
+# valid_path    ：検証データセットのパス
+# movie_ext     ：.mp4(固定)
+#
+# train_transforms：訓練データに対するTransform
+# valid_transforms：検証データに対するTransform
+#
+# pretrain
+# pretrain_type     ：dataset/pretrain_scheme/pretrain_zoo.ymlで定義されている事前学習のタイプ
+# pretrain_path     ：事前学習データセットのパス
+# n_sample_per_class：事前学習時、各クラスごとに使う学習データの割合
+animal-kingdom:
+  datatype          : animal kingdom
+  num_classes       : 101
+  n_sample_per_class: 1.0
+
+  img_size          : 224
+  n_frames          : 16
+  frame_interval    : 16
+  
+  train_path        : /mnt/d/arob_2025/animal_kindom_tmp/
+  valid_path        : /mnt/d/arob_2025/animal_kindom_tmp/
+  pretrain_path     : /mnt/d/arob_2025/animal_kindom_tmp/
+  
+  movie_ext         : .avi
+
+  train_transforms: 
+    scale       : None
+    ratio       : None
+    hflip       : 0.5
+    color_jitter: 0.4
+    norm_mean   : (0.485, 0.456, 0.406)
+    norm_std    : (0.229, 0.224, 0.225)
+
+  valid_transforms: 
+    norm_mean   : (0.485, 0.456, 0.406)
+    norm_std    : (0.229, 0.224, 0.225)
+
+  pretrain:
+    pretrain_type     : JointJigsawPuzzle3D
+    pretrain_path     : /mnt/d/arob_2025/animal_kindom_Attacking
+    n_sample_per_class: 1.0
+#################################
 #         KineticsK400          #
 #################################
 # datatype          ：KineticsK400(固定)
 # num_classess      ：クラス数
-# n_sample_per_class：学習時、各クラスごとに使う学習データの割合
-#                     設定例
-#                       n_sample_per_class=100 (各クラスごとに100個のデータを使う)
-#                       n_sample_per_class=0.2 (各クラスごとに20%のデータを使う)
-#                       n_sample_per_class=1.0 (各クラスごとに全データを使う)
+# n_sample_per_class：学習時、各クラスごとに使う学習データの割合/每个类别使用的训练样本数量或比例/Number or ratio of training samples per class
+#                     設定例/Example settings
+#                       n_sample_per_class=100 (各クラスごとに100個のデータを使う/100 samples per class)
+#                       n_sample_per_class=0.2 (各クラスごとに20%のデータを使う/20% of the data per class)
+#                       n_sample_per_class=1.0 (各クラスごとに全データを使う/Use all data per class)
 #
 # img_size      ：各フレームの切り抜きサイズ
 # n_frames      ：モデルに入力する動画のフレーム数
