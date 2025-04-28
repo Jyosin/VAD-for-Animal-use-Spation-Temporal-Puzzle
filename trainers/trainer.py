@@ -23,7 +23,8 @@ class TrainModule(pl.LightningModule):
         weight_decay (float): 正則化の重み（Weight Decay）。
         result_dir (str): 結果保存ディレクトリ。
     """
-    def __init__(self, model, cls_head, optimizer, lr, weight_decay, result_dir):
+    def __init__(self, model, cls_head, optimizer, lr, weight_decay, result_dir, dataset_name=None):
+
         super().__init__()
 
         # モデルと分類ヘッドの設定
@@ -40,19 +41,28 @@ class TrainModule(pl.LightningModule):
 
         # 損失関数（クロスエントロピー）
         self.loss_fn = nn.CrossEntropyLoss()
+        self.dataset_name = dataset_name
 
         # ディレクトリ設定
         self.result_dir = result_dir
         self.ckpt_dir = os.path.join(result_dir, "ckpt")  # チェックポイントの保存先
         os.makedirs(self.ckpt_dir, exist_ok=True)
 
-        # トップ1およびトップ5精度の計測器（学習中）
-        self.train_top1_acc = Accuracy(task="multiclass", num_classes=self.n_class)
-        self.train_top5_acc = Accuracy(task="multiclass", num_classes=self.n_class, top_k=5)
+    # データセット名に応じてtop_kを設定
+        if self.dataset_name is not None and "animalkingdom" in self.dataset_name.lower():
+            # 動物データセットならtop_k=1
+            top_k = 1
+        else:
+            top_k = 5
 
-        # トップ1およびトップ5精度の計測器（検証中）
-        self.val_top1_acc = Accuracy(task="multiclass", num_classes=self.n_class)
-        self.val_top5_acc = Accuracy(task="multiclass", num_classes=self.n_class, top_k=5)
+        # トップ1精度計測器（学習中・検証中）
+        self.train_top1_acc = Accuracy(task="multiclass", num_classes=self.n_class, top_k=1)
+        self.val_top1_acc = Accuracy(task="multiclass", num_classes=self.n_class, top_k=1)
+
+        # トップk精度計測器（学習中・検証中）
+        self.train_topk_acc = Accuracy(task="multiclass", num_classes=self.n_class, top_k=top_k)
+        self.val_topk_acc = Accuracy(task="multiclass", num_classes=self.n_class, top_k=top_k)
+       
 
         # 学習と検証ログを記録するディクショナリ
         self.learning_log = {

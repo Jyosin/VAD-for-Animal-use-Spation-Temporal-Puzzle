@@ -69,7 +69,7 @@ dataset:
   # 数据集类型（请从 dataset/dataset_zoo.yml 中定义的类型中选择）
   # 使用するデータセットのタイプ。dataset/dataset_zoo.ymlで定義されているデータセットから選択。
   # Dataset type (choose from those defined in dataset/dataset_zoo.yml)
-  type: animal kigndom
+  type: animalkingdom
 
 model:
   # 模型类型（请从 model/model_zoo.yml 中定义的类型中选择）

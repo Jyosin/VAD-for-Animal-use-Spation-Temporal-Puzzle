@@ -1,5 +1,5 @@
 #################################
-#         Animal Kingdom        #
+#         AnimalKingdom        #
 #################################
 # datatype          ：KineticsK400(固定)
 # num_classess      ：クラス数/Number of classes
@@ -27,20 +27,20 @@
 # pretrain_type     ：dataset/pretrain_scheme/pretrain_zoo.ymlで定義されている事前学習のタイプ
 # pretrain_path     ：事前学習データセットのパス
 # n_sample_per_class：事前学習時、各クラスごとに使う学習データの割合
-animal-kingdom:
-  datatype          : animal kingdom
-  num_classes       : 101
+animalkingdom:
+  datatype          : animalkingdom
+  num_classes       : 2
   n_sample_per_class: 1.0
 
   img_size          : 224
   n_frames          : 16
   frame_interval    : 16
   
-  train_path        : /mnt/d/arob_2025/animal_kindom_tmp/
-  valid_path        : /mnt/d/arob_2025/animal_kindom_tmp/
-  pretrain_path     : /mnt/d/arob_2025/animal_kindom_tmp/
+  train_path        : /mnt/d/arob_2025/animal_kingdom_tmp
+  valid_path        : /mnt/d/arob_2025/animal_kingdom_tmp
+  pretrain_path     : /mnt/d/arob_2025/animal_kingdom_tmp
   
-  movie_ext         : .avi
+  movie_ext         : .mp4
 
   train_transforms: 
     scale       : None

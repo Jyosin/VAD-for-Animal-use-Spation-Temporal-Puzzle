@@ -10,6 +10,7 @@ from utils.utils import load_yml
 from utils.transforms import getSpatialTransforms, getTemporalTransforms
 from dataset.datasets.DatasetK400 import DatasetK400, PreTrainDatasetK400
 from dataset.datasets.DatasetUCF101 import DatasetUCF101, PreTrainDatasetUCF101
+from dataset.datasets.DatasetAnimalKingdom import DatasetAnimalKingdom, PreTrainAnimalKindom
 
 # グローバル変数でデータセットの設定を保持
 dataset_params = None
@@ -36,6 +37,9 @@ def initDatasetConfig(dataset_type: str):
         )
     global dataset_params
     dataset_params = dataset_zoo.__getattribute__(dataset_type)
+
+
+    
 
 
 def getDataset() -> dict:
@@ -135,6 +139,52 @@ def getDataset() -> dict:
             n_sample_per_class=1.0,
             movie_ext=dataset_params.movie_ext,
         )
+    
+    elif dataset_params.datatype.upper() == "ANIMALKINGDOM":
+        # UCF101 データセットの生成
+        print("データタイプ：animal_kingdom")
+
+        # 学習用データセットのパス確認とインスタンス作成
+        DatasetAnimalKingdom.check_datapath(dataset_params.train_path, mode="train")
+        train_transforms = getSpatialTransforms(
+            img_size=dataset_params.img_size,
+            scale=dataset_params.train_transforms.scale,
+            ratio=dataset_params.train_transforms.ratio,
+            hflip=dataset_params.train_transforms.hflip,
+            color_jitter=dataset_params.train_transforms.color_jitter,
+            mean=dataset_params.train_transforms.norm_mean,
+            std=dataset_params.train_transforms.norm_std,
+        )
+        temporal_transforms = getTemporalTransforms(
+            n_frames=dataset_params.n_frames,
+            frame_interval=dataset_params.frame_interval,
+        )
+        train_dataset = DatasetAnimalKingdom(
+            data_path=dataset_params.train_path,
+            spatial_transform=train_transforms,
+            temporal_transform=temporal_transforms,
+            n_frames=dataset_params.n_frames,
+            n_sample_per_class=dataset_params.n_sample_per_class,
+            movie_ext=dataset_params.movie_ext,
+        )
+
+        # 検証用データセットのパス確認とインスタンス作成
+        DatasetAnimalKingdom.check_datapath(dataset_params.valid_path, mode="valid")
+        valid_transforms = getSpatialTransforms(
+            img_size=dataset_params.img_size,
+            mean=dataset_params.valid_transforms.norm_mean,
+            std=dataset_params.valid_transforms.norm_std,
+        )
+        valid_dataset = DatasetAnimalKingdom(
+            data_path=dataset_params.valid_path,
+            spatial_transform=valid_transforms,
+            temporal_transform=temporal_transforms,
+            n_frames=dataset_params.n_frames,
+            n_sample_per_class=1.0,
+            movie_ext=dataset_params.movie_ext,
+        )    
+    else:
+         raise Exception(f"未対応のデータタイプ: {dataset_params.datatype}")
 
     return {"train_dataset": train_dataset, "valid_dataset": valid_dataset, "num_classes": dataset_params.num_classes}
 

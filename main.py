@@ -116,6 +116,7 @@ def train(
         label: str = "EXPERIMENT",
         log_dir: str = "./logs",
         result_dir: str = "./results"
+        dataset_name : str = "unknown"
 ):
     """
     モデルの学習を行う関数。指定されたデータセットと分類ヘッドを用いて、モデルの学習を実行する。
@@ -295,8 +296,11 @@ def main():
         weight_decay=args.train.weight_decay,
         label=args.others.label,
         log_dir=args.others.running_path,
-        result_dir=result_dir
+        result_dir=result_dir,
+        dataset_name=args.dataset.type  
     )
+
+
 
     # TensorBoardの終了
     tb.end()
